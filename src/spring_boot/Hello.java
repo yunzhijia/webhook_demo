@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableAutoConfiguration
 public class Hello {
 	
+	//注意，此处填写的是：开发者配置->webhook 部分对应的 "第三方应用ID"
 	private String myAppId="appId";
-	private String myAppSecret="appSecret";
+	//注意，此处填写的是：开发者配置->webhook 部分对应的 "第三方应用Secret"
+	private String myAppSecret="41db945e-c880-4737-a4ee-4c7b63a6d60e";
 
 	@RequestMapping("/webhook")
 	public String home(@RequestHeader Map<String, String> header, @RequestBody String contentBody) {
@@ -24,6 +26,7 @@ public class Hello {
 			//.....
 		}else{
 			System.out.println("接收到一个非法推送");
+			return "not ok";
 		}
 		
 		return "ok";
