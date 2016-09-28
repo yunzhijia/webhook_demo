@@ -19,7 +19,9 @@ public class Hello {
 	private String myAppSecret="41db945e-c880-4737-a4ee-4c7b63a6d60e";
 
 	@RequestMapping("/webhook")
-	public String home(@RequestHeader Map<String, String> header, @RequestBody String contentBody) {
+	public String home(@RequestHeader Map<String, String> header, @RequestParam String eid,@RequestParam String eventType,
+	@RequestParam String eventId) {
+		String contentBody = "eid=" + eid+ "&eventType=" + eventType + "&eventId=" + eventId;
 		if(WebHookUtil.checkAuth(myAppId, myAppSecret, contentBody, header)){
 			System.out.println("接收到一个合法推送，内容为： "+contentBody);
 			//处理推送的逻辑写在这里
